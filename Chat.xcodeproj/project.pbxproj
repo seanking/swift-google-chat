@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0F009725E188CB00DA79B5 /* Notification.js in Resources */ = {isa = PBXBuildFile; fileRef = 3C0F009625E188CB00DA79B5 /* Notification.js */; };
 		3CDD618F25E07EE00071B391 /* ChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD618E25E07EE00071B391 /* ChatApp.swift */; };
 		3CDD619125E07EE00071B391 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD619025E07EE00071B391 /* ContentView.swift */; };
 		3CDD619325E07EE00071B391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD619225E07EE00071B391 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C0F009625E188CB00DA79B5 /* Notification.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Notification.js; sourceTree = SOURCE_ROOT; };
 		3CDD618B25E07EE00071B391 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD618E25E07EE00071B391 /* ChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApp.swift; sourceTree = "<group>"; };
 		3CDD619025E07EE00071B391 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -101,6 +103,7 @@
 				3CDD619225E07EE00071B391 /* Assets.xcassets */,
 				3CDD619725E07EE00071B391 /* Info.plist */,
 				3CDD619825E07EE00071B391 /* Chat.entitlements */,
+				3C0F009625E188CB00DA79B5 /* Notification.js */,
 				3CDD619425E07EE00071B391 /* Preview Content */,
 			);
 			path = Chat;
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CDD619625E07EE00071B391 /* Preview Assets.xcassets in Resources */,
+				3C0F009725E188CB00DA79B5 /* Notification.js in Resources */,
 				3CDD619325E07EE00071B391 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

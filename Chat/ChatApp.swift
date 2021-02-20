@@ -16,6 +16,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.isReleasedWhenClosed = false
         }
     }
+    
+    func applicationDidBecomeActive(_ notification: Notification) {
+        NSApplication.shared.dockTile.badgeLabel = nil
+    }
+
 }
 
 @main
