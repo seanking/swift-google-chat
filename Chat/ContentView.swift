@@ -37,7 +37,7 @@ struct WebBrowserView : NSViewRepresentable {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.body)
-        }
+    }
     
     class Coordinator : NSObject, WKNavigationDelegate, WKUIDelegate {
         func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
@@ -60,6 +60,7 @@ struct WebBrowserView : NSViewRepresentable {
 }
 
 class MessageHandler : NSObject, WKScriptMessageHandler {
+       
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
         let badge = NSApplication.shared.dockTile.badgeLabel ?? "0"
@@ -68,6 +69,12 @@ class MessageHandler : NSObject, WKScriptMessageHandler {
     }
     
     
+}
+
+struct TestApp: View {
+    var body: some View {
+        WebBrowserView(url: URL(string: "https://chat.google.com")!)
+    }
 }
 
 struct WebBrowserViewDemo: PreviewProvider {

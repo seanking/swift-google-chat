@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3C0F009725E188CB00DA79B5 /* Notification.js in Resources */ = {isa = PBXBuildFile; fileRef = 3C0F009625E188CB00DA79B5 /* Notification.js */; };
-		3CDD618F25E07EE00071B391 /* ChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD618E25E07EE00071B391 /* ChatApp.swift */; };
+		3C4C769325E1C37F004FB5B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C769125E1C37F004FB5B2 /* Main.storyboard */; };
+		3CDD618F25E07EE00071B391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD618E25E07EE00071B391 /* AppDelegate.swift */; };
 		3CDD619125E07EE00071B391 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD619025E07EE00071B391 /* ContentView.swift */; };
 		3CDD619325E07EE00071B391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD619225E07EE00071B391 /* Assets.xcassets */; };
 		3CDD619625E07EE00071B391 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD619525E07EE00071B391 /* Preview Assets.xcassets */; };
@@ -35,8 +36,9 @@
 
 /* Begin PBXFileReference section */
 		3C0F009625E188CB00DA79B5 /* Notification.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Notification.js; sourceTree = SOURCE_ROOT; };
+		3C4C769225E1C37F004FB5B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../test/test/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CDD618B25E07EE00071B391 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CDD618E25E07EE00071B391 /* ChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApp.swift; sourceTree = "<group>"; };
+		3CDD618E25E07EE00071B391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CDD619025E07EE00071B391 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3CDD619225E07EE00071B391 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CDD619525E07EE00071B391 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -98,9 +100,10 @@
 		3CDD618D25E07EE00071B391 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				3CDD618E25E07EE00071B391 /* ChatApp.swift */,
+				3CDD618E25E07EE00071B391 /* AppDelegate.swift */,
 				3CDD619025E07EE00071B391 /* ContentView.swift */,
 				3CDD619225E07EE00071B391 /* Assets.xcassets */,
+				3C4C769125E1C37F004FB5B2 /* Main.storyboard */,
 				3CDD619725E07EE00071B391 /* Info.plist */,
 				3CDD619825E07EE00071B391 /* Chat.entitlements */,
 				3C0F009625E188CB00DA79B5 /* Notification.js */,
@@ -214,7 +217,7 @@
 				};
 			};
 			buildConfigurationList = 3CDD618625E07EE00071B391 /* Build configuration list for PBXProject "Chat" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -241,6 +244,7 @@
 				3CDD619625E07EE00071B391 /* Preview Assets.xcassets in Resources */,
 				3C0F009725E188CB00DA79B5 /* Notification.js in Resources */,
 				3CDD619325E07EE00071B391 /* Assets.xcassets in Resources */,
+				3C4C769325E1C37F004FB5B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CDD619125E07EE00071B391 /* ContentView.swift in Sources */,
-				3CDD618F25E07EE00071B391 /* ChatApp.swift in Sources */,
+				3CDD618F25E07EE00071B391 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +304,17 @@
 			targetProxy = 3CDD61A925E07EE10071B391 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C4C769125E1C37F004FB5B2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C4C769225E1C37F004FB5B2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3CDD61AF25E07EE10071B391 /* Debug */ = {
@@ -432,7 +447,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seanking.Chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -454,7 +469,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seanking.Chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
