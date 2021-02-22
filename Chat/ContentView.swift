@@ -20,14 +20,13 @@ struct WebBrowserView : NSViewRepresentable {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.userContentController.addUserScript(script)
         webConfiguration.userContentController.add(MessageHandler(), name: "notify")
-        webConfiguration.applicationNameForUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
-        
+       
         
         let view = WKWebView(frame: .zero, configuration: webConfiguration)
         view.navigationDelegate = context.coordinator
         view.uiDelegate = context.coordinator
         view.autoresizingMask = [.width, .height]
-        
+        view.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
         
         return view
         
