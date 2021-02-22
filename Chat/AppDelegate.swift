@@ -13,7 +13,6 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let contentView = WebView()
 
@@ -39,30 +38,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 }
-
-
-//final class AppDelegate: NSObject, NSApplicationDelegate {
-//    func applicationWillFinishLaunching(_ notification: Notification) {
-//
-//        NSApplication.shared.windows.forEach { window in
-//            window.setFrameAutosaveName("Main Window")
-//            window.isReleasedWhenClosed = false
-//        }
-//    }
-//
-//    func applicationDidBecomeActive(_ notification: Notification) {
-//        NSApplication.shared.dockTile.badgeLabel = nil
-//    }
-//
-//}
-//
-//@main
-//struct ChatApp: App {
-//    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    var body: some Scene {
-//        WindowGroup {
-//            WebBrowserView(url: URL(string: "https://chat.google.com")!)
-//        }
-//    }
-//}
-
