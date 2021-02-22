@@ -20,17 +20,12 @@ struct WebBrowserView : NSViewRepresentable {
         view.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
         
         return view
-        
     }
     
     public func updateNSView(_ nsView: WKWebView, context: Context) {
         nsView.load(URLRequest(url: url))
     }
-    
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body)
-    }
-    
+
     private func notificationScript() -> WKUserScript? {
         if let scriptUrl = Bundle.main.url(forResource: "Notification", withExtension: "js") {
             let sourceUrl = try! String(contentsOf: scriptUrl)
