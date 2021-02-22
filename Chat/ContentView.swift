@@ -13,14 +13,12 @@ struct WebBrowserView : NSViewRepresentable {
     let url: URL
     
     public func makeNSView(context: Context) -> WKWebView {
-        let scriptUrl = Bundle.main.url(forResource: "Notification", withExtension: "js")!
-        let sourceUrl = try! String(contentsOf: scriptUrl)
-        let script = WKUserScript(source: sourceUrl, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        
         let webConfiguration = WKWebViewConfiguration()
-        webConfiguration.userContentController.addUserScript(script)
-        webConfiguration.userContentController.add(MessageHandler(), name: "notify")
-       
+        
+        if let script = notificationScript() {
+            webConfiguration.userContentController.addUserScript(script)
+            webConfiguration.userContentController.add(MessageHandler(), name: "notify")
+        }
         
         let view = WKWebView(frame: .zero, configuration: webConfiguration)
         view.navigationDelegate = context.coordinator
@@ -38,6 +36,14 @@ struct WebBrowserView : NSViewRepresentable {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print(message.body)
+    }
+    
+    private func notificationScript() -> WKUserScript? {
+        if let scriptUrl = Bundle.main.url(forResource: "Notification", withExtension: "js") {
+            let sourceUrl = try! String(contentsOf: scriptUrl)
+            return WKUserScript(source: sourceUrl, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        }
+        return nil
     }
     
     class Coordinator : NSObject, WKNavigationDelegate, WKUIDelegate {
@@ -71,7 +77,6 @@ struct WebBrowserView : NSViewRepresentable {
     func makeCoordinator() -> WebBrowserView.Coordinator {
         Coordinator()
     }
-    
 }
 
 class MessageHandler : NSObject, WKScriptMessageHandler {
@@ -84,8 +89,6 @@ class MessageHandler : NSObject, WKScriptMessageHandler {
             NSApplication.shared.dockTile.badgeLabel = String(count + 1)
         }
     }
-    
-    
 }
 
 struct WebView: View {
