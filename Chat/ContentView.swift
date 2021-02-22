@@ -22,10 +22,12 @@ struct WebBrowserView : NSViewRepresentable {
         webConfiguration.userContentController.add(MessageHandler(), name: "notify")
         webConfiguration.applicationNameForUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15"
         
+        
         let view = WKWebView(frame: .zero, configuration: webConfiguration)
         view.navigationDelegate = context.coordinator
         view.uiDelegate = context.coordinator
         view.autoresizingMask = [.width, .height]
+        
         
         return view
         
@@ -71,7 +73,7 @@ class MessageHandler : NSObject, WKScriptMessageHandler {
     
 }
 
-struct TestApp: View {
+struct WebView: View {
     var body: some View {
         WebBrowserView(url: URL(string: "https://chat.google.com")!)
     }
