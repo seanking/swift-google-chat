@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Chat
-//
-//  Created by Sean King on 2/19/21.
-//
-
 import SwiftUI
 import WebKit
 
