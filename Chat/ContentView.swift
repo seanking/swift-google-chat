@@ -76,12 +76,14 @@ struct WebBrowserView : NSViewRepresentable {
 }
 
 class MessageHandler : NSObject, WKScriptMessageHandler {
-       
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
-        let badge = NSApplication.shared.dockTile.badgeLabel ?? "0"
-        let count = Int(badge) ?? 0
-        NSApplication.shared.dockTile.badgeLabel = String(count + 1)
+        if !NSApplication.shared.isActive {
+            let badge = NSApplication.shared.dockTile.badgeLabel ?? "0"
+            let count = Int(badge) ?? 0
+            NSApplication.shared.dockTile.badgeLabel = String(count + 1)
+        }
     }
     
     
