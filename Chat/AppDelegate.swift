@@ -41,6 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidBecomeActive(_ notification: Notification) {
         NSApplication.shared.dockTile.badgeLabel = ""
+        window.makeKeyAndOrderFront(nil)
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
