@@ -1,6 +1,7 @@
 import Cocoa
 import SwiftUI
-
+import OSLog
+import UserNotifications
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -18,6 +19,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.setFrameAutosaveName("Main Window")
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
+        
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            let logger = Logger()
+            logger.info("Granted: \(granted.description)")
+            
+            if let error = error {
+                logger.error("Error occurred requesting notification center authorization.")
+                logger.error("\(error.localizedDescription)")
+            }            
+        }
     }
     
     func applicationDidBecomeActive(_ notification: Notification) {
