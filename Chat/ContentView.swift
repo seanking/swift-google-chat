@@ -1,5 +1,7 @@
 import SwiftUI
 import WebKit
+import UserNotifications
+import OSLog
 
 struct WebBrowserView : NSViewRepresentable {
     
@@ -25,7 +27,7 @@ struct WebBrowserView : NSViewRepresentable {
     public func updateNSView(_ nsView: WKWebView, context: Context) {
         nsView.load(URLRequest(url: url))
     }
-
+    
     private func notificationScript() -> WKUserScript? {
         if let scriptUrl = Bundle.main.url(forResource: "Notification", withExtension: "js") {
             let sourceUrl = try! String(contentsOf: scriptUrl)
@@ -75,18 +77,22 @@ class MessageHandler : NSObject, WKScriptMessageHandler {
            let subtitle = messageBody["subtitle"] as? String,
            let icon = messageBody["icon"] as? String {
             
-            let notification = NSUserNotification()
-            notification.title = title
-            notification.subtitle = subtitle
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.subtitle = subtitle
+            content.sound = UNNotificationSound.default
             
             if let url = URL(string: icon) {
                 if let image = NSImage(contentsOf: url) {
-                    notification.contentImage = image
+                    let attachment = UNNotificationAttachment.create(identifier: url.lastPathComponent, image: image, options: nil)
+                    if let attachment = attachment {
+                        content.attachments = [attachment]
+                    }
                 }
             }
             
-            notification.soundName = NSUserNotificationDefaultSoundName
-            NSUserNotificationCenter.default.deliver(notification)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request)
         }
     }
     
@@ -101,6 +107,42 @@ class MessageHandler : NSObject, WKScriptMessageHandler {
         if !NSApplication.shared.isActive {
             updateBadge()
             displayNotification(message)
+        }
+    }
+}
+
+extension UNNotificationAttachment {
+    static func create(identifier: String, image: NSImage, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+        let logger = Logger()
+        do {
+            if let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
+                let imageFileIdentifier = "\(identifier).png"
+                let fileURL = cachesDirectory.appendingPathComponent(imageFileIdentifier)
+                
+                if !FileManager.default.fileExists(atPath: fileURL.path) {
+                    logger.debug("File not found in cache: \(fileURL.path)")
+                    try image.pngWrite(to: fileURL)
+                    logger.debug("Saved file to cache: \(fileURL.path)")
+                } else {
+                    logger.debug("File loaded from cache: \(fileURL.path)")
+                }
+                
+                return try UNNotificationAttachment.init(identifier: imageFileIdentifier, url: fileURL, options: options)
+            }
+        } catch {
+            logger.error("Error creating temporary images. \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+}
+
+extension NSImage {
+    func pngWrite(to url: URL, options: Data.WritingOptions = .atomic) throws {
+        if let tiffRepresentation = tiffRepresentation, let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) {
+            if let png = bitmapImage.representation(using: .png, properties: [:]) {
+                try png.write(to: url, options: options)
+            }
         }
     }
 }
