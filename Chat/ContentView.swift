@@ -69,12 +69,38 @@ struct WebBrowserView : NSViewRepresentable {
 
 class MessageHandler : NSObject, WKScriptMessageHandler {
     
+    fileprivate func displayNotification(_ message: WKScriptMessage) {
+        if let messageBody = message.body as? [String: Any],
+           let title = messageBody["title"] as? String,
+           let subtitle = messageBody["subtitle"] as? String,
+           let icon = messageBody["icon"] as? String {
+            
+            let notification = NSUserNotification()
+            notification.title = title
+            notification.subtitle = subtitle
+            
+            if let url = URL(string: icon) {
+                if let image = NSImage(contentsOf: url) {
+                    notification.contentImage = image
+                }
+            }
+            
+            notification.soundName = NSUserNotificationDefaultSoundName
+            NSUserNotificationCenter.default.deliver(notification)
+        }
+    }
+    
+    fileprivate func updateBadge() {
+        let badge = NSApplication.shared.dockTile.badgeLabel ?? "0"
+        let count = Int(badge) ?? 0
+        NSApplication.shared.dockTile.badgeLabel = String(count + 1)
+    }
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
         if !NSApplication.shared.isActive {
-            let badge = NSApplication.shared.dockTile.badgeLabel ?? "0"
-            let count = Int(badge) ?? 0
-            NSApplication.shared.dockTile.badgeLabel = String(count + 1)
+            updateBadge()
+            displayNotification(message)
         }
     }
 }

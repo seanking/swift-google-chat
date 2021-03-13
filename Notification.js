@@ -1,4 +1,4 @@
-class NotificationOverride {
+class NotificationOverride extends Notification {
     static get permission() {
         return "granted";
     }
@@ -7,8 +7,16 @@ class NotificationOverride {
         callback("granted");
     }
     
-    constructor (messageText) {
-        window.webkit.messageHandlers.notify.postMessage(messageText);
+    constructor(title, options) {
+        super(title, options);
+        
+        const message = {
+            title: title,
+            subtitle: options.body,
+            icon: options.icon,
+        };
+        
+        window.webkit.messageHandlers.notify.postMessage(message);
     }
 }
 
