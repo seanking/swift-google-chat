@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C0C76F525E3EB31008623F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0C76F425E3EB31008623F5 /* Main.storyboard */; };
 		3C0F009725E188CB00DA79B5 /* Notification.js in Resources */ = {isa = PBXBuildFile; fileRef = 3C0F009625E188CB00DA79B5 /* Notification.js */; };
+		3C40303325FD48FF0031C46B /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40303225FD48FF0031C46B /* MessageHandler.swift */; };
 		3CDD618F25E07EE00071B391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD618E25E07EE00071B391 /* AppDelegate.swift */; };
 		3CDD619125E07EE00071B391 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD619025E07EE00071B391 /* ContentView.swift */; };
 		3CDD619325E07EE00071B391 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDD619225E07EE00071B391 /* Assets.xcassets */; };
@@ -36,7 +37,8 @@
 
 /* Begin PBXFileReference section */
 		3C0C76F425E3EB31008623F5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		3C0F009625E188CB00DA79B5 /* Notification.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Notification.js; sourceTree = SOURCE_ROOT; };
+		3C0F009625E188CB00DA79B5 /* Notification.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Notification.js; path = Chat/Notification.js; sourceTree = SOURCE_ROOT; };
+		3C40303225FD48FF0031C46B /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		3CA3C2AD25E43B3400DC3A43 /* ChatRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatRelease.entitlements; sourceTree = "<group>"; };
 		3CDD618B25E07EE00071B391 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDD618E25E07EE00071B391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,13 +103,14 @@
 		3CDD618D25E07EE00071B391 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				3CA3C2AD25E43B3400DC3A43 /* ChatRelease.entitlements */,
-				3C0C76F425E3EB31008623F5 /* Main.storyboard */,
 				3CDD618E25E07EE00071B391 /* AppDelegate.swift */,
-				3CDD619025E07EE00071B391 /* ContentView.swift */,
 				3CDD619225E07EE00071B391 /* Assets.xcassets */,
-				3CDD619725E07EE00071B391 /* Info.plist */,
 				3CDD619825E07EE00071B391 /* Chat.entitlements */,
+				3CA3C2AD25E43B3400DC3A43 /* ChatRelease.entitlements */,
+				3CDD619025E07EE00071B391 /* ContentView.swift */,
+				3CDD619725E07EE00071B391 /* Info.plist */,
+				3C0C76F425E3EB31008623F5 /* Main.storyboard */,
+				3C40303225FD48FF0031C46B /* MessageHandler.swift */,
 				3C0F009625E188CB00DA79B5 /* Notification.js */,
 				3CDD619425E07EE00071B391 /* Preview Content */,
 			);
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CDD619125E07EE00071B391 /* ContentView.swift in Sources */,
+				3C40303325FD48FF0031C46B /* MessageHandler.swift in Sources */,
 				3CDD618F25E07EE00071B391 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +443,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seanking.Chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,7 +466,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.seanking.Chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
